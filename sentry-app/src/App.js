@@ -1,13 +1,6 @@
 import {useState} from 'react';
-
-// function Navigation() {
-//     const handleOne = () =>{
-
-//     }
-//     const handleTwo = () =>{
-        
-//     }
-// }
+import React from "react";
+import * as Sentry from "@sentry/react";
 
 
 const People = () => {
@@ -20,6 +13,8 @@ const People = () => {
 
     try {
       const response = await fetch('https://reqres.in/api/users', {
+    
+
         method: 'GET',
         headers: {
           Accept: 'Application/json',
@@ -48,9 +43,18 @@ const People = () => {
   return (
     <><></><div>
 
+
  <a href="https://www.facebook.com">FB</a>  
+ <br></br>
+ <a href="/src/app.html">App Contact</a>
+ <br></br>
+
+ <a href="/src/page.html"> About Page</a>
 
 
+{/* Comment out the one line below to make the app work. */}
+
+ <button onClick={methodDoesNotExist}>Break the world</button>;
 
 
 
@@ -79,4 +83,4 @@ const People = () => {
   );
 };
 
-export default People;
+ export default Sentry.withProfiler(People);
