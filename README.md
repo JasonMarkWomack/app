@@ -1,6 +1,6 @@
 ## Sentry Integration into a Simple React App
 
-### Steps
+### Comamnd Line Steps
     git clone git@github.com:JasonMarkWomack/app.git
     cd app
     cd sentry-app
