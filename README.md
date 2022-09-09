@@ -23,7 +23,7 @@ App will be running on localhost:3000 with an error.
 
 
 ### Sentry Page Load Monitoring + React
-
+Creation of HTML pages to ensure proper tracking via Sentry
 
 
 <img width="1195" alt="Screen Shot 2022-09-09 at 3 02 02 PM" src="https://user-images.githubusercontent.com/16356269/189434073-3c6f9a1d-85b0-475a-86aa-e6aac567d2fa.png">
