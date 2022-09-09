@@ -1,46 +1,82 @@
+import {useState} from 'react';
 
-import React from "react";
-import './App.css';
-class App extends React.Component {
-   
-    constructor(props) {
-        super(props);
-   
-        this.state = {
-            items: [],
-            MyDataHasLoaded: false
-        };
+// function Navigation() {
+//     const handleOne = () =>{
+
+//     }
+//     const handleTwo = () =>{
+        
+//     }
+// }
+
+
+const People = () => {
+  const [data, setData] = useState({data: []});
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState('');
+
+  const handleClick = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('https://reqres.in/api/users', {
+        method: 'GET',
+        headers: {
+          Accept: 'Application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      console.log('result is: ', JSON.stringify(result, null, 4));
+
+      setData(result);
+    } catch (err) {
+      setErr(err.message);
+    } finally {
+      setIsLoading(false);
     }
-   
-    componentDidMount() {
-        fetch(
-"https://jsonplaceholder.typicode.com/users")
-            .then((res) => res.json())
-            .then((json) => {
-                this.setState({
-                    items: json,
-                    MyDataHasLoaded: true
-                });
-            })
-    }
-    render() {
-        const { MyDataHasLoaded, items } = this.state;
-        if (!MyDataHasLoaded) return <div>
-            <h1> Pleses wait. </h1> </div> ;
-   
-        return (
-        <div className = "App">
-            <h1> Fetch Data </h1>  {
-                items.map((item) => ( 
-                <ol key = { item.id } > 
-                    Name: { item.name }, 
-                    Email: { item.email } 
-                    </ol>
-                ))
-            }
-        </div>
-    );
-}
-}
-   
-export default App;
+  };
+
+  console.log(data);
+
+
+  return (
+    <><></><div>
+
+ <a href="https://www.facebook.com">FB</a>  
+
+
+
+
+
+      </div><div>
+
+
+              {err && <h2>{err}</h2>}
+
+              <button onClick={handleClick}>Fetch data</button>
+
+              {isLoading && <h2>Loading</h2>}
+
+              {data.data.map(person => {
+                  return (
+                      <div key={person.id}>
+                          <h2>{person.email}</h2>
+                          <h2>{person.first_name}</h2>
+                          <h2>{person.last_name}</h2>
+                          <br />
+                      </div>
+
+                  );
+              })}
+          </div>
+          <a href="https://www.twitter.com">Twitter</a></>
+  );
+};
+
+export default People;
